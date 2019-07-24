@@ -15,7 +15,7 @@
 {
     CDVPluginResult* pluginResult = nil;
     NSString* echo = [command.arguments objectAtIndex:0];
-    echo = [NSString initWithFormat:@"%@%@", @"eShift ios: ", echo];
+    echo = [NSString stringWithFormat:@"%@%@", @"eShift ios: ", echo];
 
     if (echo != nil && [echo length] > 0) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
