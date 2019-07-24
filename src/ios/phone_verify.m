@@ -1,6 +1,7 @@
 /********* phone_verify.m Cordova Plugin Implementation *******/
 
 #import <Cordova/CDV.h>
+#import <SMS_SDK/SMSSDK.h>
 
 @interface phone_verify : CDVPlugin {
   // Member variables go here.
