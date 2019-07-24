@@ -1,0 +1,15 @@
+// 添加插件
+apply plugin: 'com.mob.sdk'
+
+// 在MobSDK的扩展中注册SMSSDK的相关信息
+MobSDK {
+  appKey "2ba25e224b994"
+  appSecret "9ede73b513b3e7896ced5eed67747450"
+
+  SMSSDK {
+    //默认使用GUI，若不使用GUI，通过以下开关关闭
+    gui false
+    //若使用GUI的自动填充验证码功能，需打开此设置
+    //autoSMS true     
+  }
+}

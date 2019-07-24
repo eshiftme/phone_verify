@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="me.eshift.phone_verify" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>phone_verify</name>
+  <js-module name="phone_verify" src="www/phone_verify.js">
+    <clobbers target="cordova.plugins.phone_verify" />
+  </js-module>
+  
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="phone_verify">
+        <param name="android-package" value="me.eshift.phone_verify.phone_verify" />
+      </feature>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml" />
+    <source-file src="src/android/phone_verify.java" target-dir="src/me/eshift/phone_verify/phone_verify" />
+    
+    <framework src="build.gradle" custom="true" type="gradleReference" />
+    
+  </platform>
+  
+  <platform name="ios">
+    <config-file parent="/*" target="config.xml">
+      <feature name="phone_verify">
+        <param name="ios-package" value="phone_verify" />
+      </feature>
+    </config-file>
+    
+    <config-file target="*-Info.plist" parent="/*">
+      <key>MOBAppKey</key>
+      <string>2ba25e224b994</string>
+      <key>MOBAppSecret</key>
+      <string>9ede73b513b3e7896ced5eed67747450</string>
+    </config-file>
+    
+    <source-file src="src/ios/phone_verify.m" />
+    
+    <framework src="libz.dylib" />
+    <framework src="libicucore.dylib" />
+    <framework src="MessageUI.framework" />
+    <framework src="JavaScriptCore.framework" />
+    <framework src="libstdc++.dylib" />
+    <framework src="libc++.dylib" />
+    <framework src="SystemConfiguration.framework" />
+    <framework src="CoreTelephony.framework" />
+    <framework src="AdSupport.framework" />
+    <framework src="lib/ios/MOBSDK/Required/MOBFoundation.framework" custom="true" />
+    <framework src="lib/ios/MOBSDK/SMSSDK/SMS_SDK.framework" custom="true" />
+    
+  </platform>
+</plugin>

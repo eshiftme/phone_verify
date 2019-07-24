@@ -1,0 +1,15 @@
+{
+  "name": "phone_verify",
+  "version": "0.0.1",
+  "description": "phone verify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "phone",
+    "verify"
+  ],
+  "author": "1kg",
+  "license": "ISC"
+}
