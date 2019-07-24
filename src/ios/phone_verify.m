@@ -39,6 +39,7 @@
 
 - (void)getSMS:(CDVInvokedUrlCommand*)command
 {
+  CDVPluginResult* pluginResult = nil;
   NSString* country = [command.arguments objectAtIndex:0];
   NSString* phone = [command.arguments objectAtIndex:1];
   
@@ -57,6 +58,7 @@
 
 - (void)getVoice:(CDVInvokedUrlCommand*)command
 {
+  CDVPluginResult* pluginResult = nil;
   NSString* country = [command.arguments objectAtIndex:0];
   NSString* phone = [command.arguments objectAtIndex:1];
   
