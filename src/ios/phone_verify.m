@@ -7,23 +7,69 @@
 }
 
 - (void)mob:(CDVInvokedUrlCommand*)command;
+- (void)getCountries:(CDVInvokedUrlCommand*)command;
+- (void)getSMS:(CDVInvokedUrlCommand*)command;
+- (void)getVoice:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation phone_verify
 
 - (void)mob:(CDVInvokedUrlCommand*)command
 {
-    CDVPluginResult* pluginResult = nil;
-    NSString* echo = [command.arguments objectAtIndex:0];
-    echo = [NSString stringWithFormat:@"%@%@", @"eShift ios: ", echo];
+  CDVPluginResult* pluginResult = nil;
+  NSString* echo = [command.arguments objectAtIndex:0];
+  echo = [NSString stringWithFormat:@"%@%@", @"eShift ios: ", echo];
 
-    if (echo != nil && [echo length] > 0) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
-    } else {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+  if (echo != nil && [echo length] > 0)
+  {
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
+  }
+  else
+  {
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+  }
+
+  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void)getCountries:(CDVInvokedUrlCommand*)command
+{
+}
+
+- (void)getSMS:(CDVInvokedUrlCommand*)command
+{
+  NSString* country = [command.arguments objectAtIndex:0];
+  NSString* phone = [command.arguments objectAtIndex:1];
+  
+  [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:phone zone:country result:^(NSError *error)
+  {
+    if (!error)
+    {
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     }
+    else
+    {
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    }
+  }];
+}
 
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+- (void)getVoice:(CDVInvokedUrlCommand*)command
+{
+  NSString* country = [command.arguments objectAtIndex:0];
+  NSString* phone = [command.arguments objectAtIndex:1];
+  
+  [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodVoice phoneNumber:phone zone:country result:^(NSError *error)
+  {
+    if (!error)
+    {
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    }
+    else
+    {
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    }
+  }];
 }
 
 @end
