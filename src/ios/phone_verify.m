@@ -1,7 +1,6 @@
 /********* phone_verify.m Cordova Plugin Implementation *******/
 
 #import <Cordova/CDV.h>
-#import <Foundation/Foundation.h>
 
 @interface phone_verify : CDVPlugin {
   // Member variables go here.
@@ -16,9 +15,10 @@
 {
     CDVPluginResult* pluginResult = nil;
     NSString* echo = [command.arguments objectAtIndex:0];
+    echo = [NSString initWithFormat:@"%@%@", @"eShift ios: ", echo];
 
     if (echo != nil && [echo length] > 0) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK [NSString initWithFormat:@"%@%@", @"eShift ios: ", messageAsString:echo]];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
