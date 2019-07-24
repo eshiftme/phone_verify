@@ -39,12 +39,13 @@
 
 - (void)getSMS:(CDVInvokedUrlCommand*)command
 {
-  CDVPluginResult* pluginResult = nil;
   NSString* country = [command.arguments objectAtIndex:0];
   NSString* phone = [command.arguments objectAtIndex:1];
   
   [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:phone zone:country result:^(NSError *error)
   {
+    CDVPluginResult* pluginResult = nil;
+    
     if (!error)
     {
       pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -53,17 +54,20 @@
     {
       pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
   }];
 }
 
 - (void)getVoice:(CDVInvokedUrlCommand*)command
 {
-  CDVPluginResult* pluginResult = nil;
   NSString* country = [command.arguments objectAtIndex:0];
   NSString* phone = [command.arguments objectAtIndex:1];
   
   [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodVoice phoneNumber:phone zone:country result:^(NSError *error)
   {
+    CDVPluginResult* pluginResult = nil;
+    
     if (!error)
     {
       pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -72,6 +76,8 @@
     {
       pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
   }];
 }
 
