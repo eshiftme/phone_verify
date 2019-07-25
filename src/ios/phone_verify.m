@@ -52,7 +52,7 @@
     }
     else
     {
-      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR error.description];
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.description];
     }
     
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
