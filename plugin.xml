@@ -25,11 +25,13 @@
       </feature>
     </config-file>
     
-    <config-file target="*-Info.plist" parent="/*">
+    <config-file target="*-Info.plist" parent="/plist/dict">
       <key>MOBAppKey</key>
       <string>2ba25e224b994</string>
       <key>MOBAppSecret</key>
       <string>9ede73b513b3e7896ced5eed67747450</string>
+      <key>NSContactsUsageDescription</key>
+      <string></string>
     </config-file>
     
     <source-file src="src/ios/phone_verify.m" />
