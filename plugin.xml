@@ -25,12 +25,13 @@
       </feature>
     </config-file>
     
-    <config-file target="*-Info.plist" parent="/plist/dict">
-      <key>MOBAppKey</key>
+    <config-file target="*-Info.plist" parent="MOBAppKey">
       <string>2ba25e224b994</string>
-      <key>MOBAppSecret</key>
+    </config-file>
+    <config-file target="*-Info.plist" parent="MOBAppSecret">
       <string>9ede73b513b3e7896ced5eed67747450</string>
-      <key>NSContactsUsageDescription</key>
+    </config-file>
+    <config-file target="*-Info.plist" parent="NSContactsUsageDescription">
       <string></string>
     </config-file>
     
