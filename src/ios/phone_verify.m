@@ -42,6 +42,11 @@
   NSString* country = [command.arguments objectAtIndex:0];
   NSString* phone = [command.arguments objectAtIndex:1];
   
+NSString* echo = [NSString stringWithFormat:@"%@-%@", country, phone];
+CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
+[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
+/**  
   [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS phoneNumber:phone zone:country result:^(NSError *error)
   {
     CDVPluginResult* pluginResult = nil;
@@ -57,6 +62,7 @@
     
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
   }];
+**/
 }
 
 - (void)getVoice:(CDVInvokedUrlCommand*)command
