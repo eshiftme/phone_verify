@@ -53,6 +53,7 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     return;
   }
+  m_lastverify = tm;
   
   NSString* country = [command.arguments objectAtIndex:0];
   NSString* phone = [command.arguments objectAtIndex:1];
@@ -83,6 +84,7 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     return;
   }
+  m_lastverify = tm;
   
   NSString* country = [command.arguments objectAtIndex:0];
   NSString* phone = [command.arguments objectAtIndex:1];
