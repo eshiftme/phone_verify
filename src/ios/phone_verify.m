@@ -5,6 +5,8 @@
 
 @interface phone_verify : CDVPlugin {
   // Member variables go here.
+  @protected
+  UInt64 m_lastverify;
 }
 
 - (void)mob:(CDVInvokedUrlCommand*)command;
@@ -14,6 +16,11 @@
 @end
 
 @implementation phone_verify
+
+- (void)pluginInitialize
+{
+  m_lastverify = 0;
+}
 
 - (void)mob:(CDVInvokedUrlCommand*)command
 {
@@ -39,6 +46,14 @@
 
 - (void)getSMS:(CDVInvokedUrlCommand*)command
 {
+  UInt64 tm = [[NSDate date] timeIntervalSince1970];
+  if (tm <= m_lastverify + 58)
+  {
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"-1"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    return;
+  }
+  
   NSString* country = [command.arguments objectAtIndex:0];
   NSString* phone = [command.arguments objectAtIndex:1];
   
@@ -61,6 +76,14 @@
 
 - (void)getVoice:(CDVInvokedUrlCommand*)command
 {
+  UInt64 tm = [[NSDate date] timeIntervalSince1970];
+  if (tm <= m_lastverify + 58)
+  {
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"-1"];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    return;
+  }
+  
   NSString* country = [command.arguments objectAtIndex:0];
   NSString* phone = [command.arguments objectAtIndex:1];
   
@@ -74,7 +97,7 @@
     }
     else
     {
-      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:error.description];
     }
     
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
